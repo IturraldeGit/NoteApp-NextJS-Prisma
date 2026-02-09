@@ -1,9 +1,3 @@
-export interface Note {
-    id: string;
-    title: string;
-    content: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
+import { Note } from "@prisma/client";
 
-export type CreateNote = Omit<Note, 'id'>;
+export type CreateNote = Omit<Note, 'id' | 'createdAt' | 'updatedAt'>;
