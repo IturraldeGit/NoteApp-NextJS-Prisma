@@ -1,18 +1,19 @@
 'use client';
 
 import { createContext, useState, useContext } from "react";
-import { Note, CreateNote } from "@/interfaces/Note";
+import { CreateNote } from "@/interfaces/Note";
+import { Note } from "@prisma/client";
 
 export const NoteContext = createContext<{
     notes: Note[];
     getNotes: () => Promise<void>;
     createNote: (note: CreateNote) => Promise<void>;
-    deleteNote: (id: string) => Promise<void>;
+    deleteNote: (id: number) => Promise<void>;
 }>({
     notes: [],
     getNotes: async () => {},
     createNote: async (note: CreateNote) => {},
-    deleteNote: async (id: string) => {}
+    deleteNote: async (id: number) => {}
 });
 
 export const useNotes = () => {
@@ -48,7 +49,7 @@ export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
         setNotes([...notes, newNote]);
     }
 
-    async function deleteNote(id: string) {
+    async function deleteNote(id: number) {
         const res = await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
         });

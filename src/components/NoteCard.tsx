@@ -1,4 +1,4 @@
-import { Note } from "@/interfaces/Note"
+import { Note } from "@prisma/client";
 import { useNotes } from "@/context/NoteContext"
 
 function NoteCard({
