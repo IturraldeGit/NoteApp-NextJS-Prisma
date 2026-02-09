@@ -1,5 +1,6 @@
 import { Note } from "@prisma/client";
 import { useNotes } from "@/context/NoteContext"
+import { BiSolidTrash, BiSolidPencil } from "react-icons/bi";
 
 function NoteCard({
     note
@@ -10,17 +11,20 @@ function NoteCard({
             <div>
                 <h1 className='text-white text-2xl font-bold'>{note.title}</h1>
                 <p className='text-neutral-400'>{note.content}</p>
+                <p className='text-neutral-400'>{new Date(note.createdAt).toLocaleDateString()}</p>
             </div>
-            <div className="flex gap-2 ml-10">
+            <div className="flex items-center gap-2 ml-10">
                 <button 
                     onClick={() => {setSelectedNote(note)}}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-full cursor-pointer hover:bg-blue-600 transition-colors">
-                        🖊️
+                    title="Edit Note"
+                    className="flex items-center justify-center bg-blue-500 text-white w-16 h-16 px-4 py-2 rounded-full cursor-pointer hover:bg-blue-600 transition-colors">
+                        <BiSolidPencil   className="w-6 h-6" />
                 </button>
                 <button 
                     onClick={() => {deleteNote(note.id)}}
-                    className="bg-gray-500 text-white px-4 py-2 rounded-full cursor-pointer hover:bg-gray-600 transition-colors">
-                        ✖️
+                    title="Delete Note"
+                    className="flex items-center justify-center bg-gray-500 text-white w-16 h-16 px-4 py-2 rounded-full cursor-pointer hover:bg-gray-600 transition-colors">
+                        <BiSolidTrash className="w-6 h-6" />
                 </button>
             </div>
         </div>

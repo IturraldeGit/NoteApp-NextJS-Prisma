@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useNotes } from "@/context/NoteContext";
+import { BiAddToQueue, BiSolidCommentEdit, BiSolidMessageSquareX  } from "react-icons/bi";
 
 function NoteForm() {
     const [title, setTitle] = useState('');
@@ -53,9 +54,10 @@ function NoteForm() {
             <div className="flex justify-end gap-x-2">
                 <button 
                     type="submit"
-                    className="px-5 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 cursor-pointer"
+                    className="flex items-center justify-center px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={!title}
                 >
-                    {selectedNote ? 'Update Note' : 'Add Note'}
+                    {selectedNote ? "Edit" : "Add Note"}
                 </button>
                 {selectedNote && (
                     <button
@@ -64,7 +66,7 @@ function NoteForm() {
                             setTitle('')
                             setContent('')
                         }}
-                        className="px-5 py-2 text-white bg-gray-600 rounded-md hover:bg-gray-700 cursor-pointer"
+                        className="flex items-center justify-center px-4 py-2 text-white bg-gray-600 rounded-md hover:bg-gray-700 cursor-pointer"
                         type="button"
                     >
                         Cancel
