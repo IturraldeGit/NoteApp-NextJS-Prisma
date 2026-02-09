@@ -8,7 +8,7 @@ function NoteForm() {
     const [content, setContent] = useState('');
     const titleRef = useRef<HTMLInputElement>(null);
 
-    const { createNote, selectedNote, setSelectedNote } = useNotes();
+    const { createNote, updateNote, selectedNote, setSelectedNote } = useNotes();
 
     useEffect(() => {
         if (selectedNote) {
@@ -19,10 +19,12 @@ function NoteForm() {
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await createNote({ 
-            title, 
-            content
-        });
+        if (selectedNote) {
+            await updateNote(selectedNote.id, { title, content });
+            setSelectedNote(null);
+        } else {
+            await createNote({ title, content });
+        }
 
         setTitle('');
         setContent('');
@@ -53,7 +55,7 @@ function NoteForm() {
                     type="submit"
                     className="px-5 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 cursor-pointer"
                 >
-                    Add Note
+                    {selectedNote ? 'Update Note' : 'Add Note'}
                 </button>
                 {selectedNote && (
                     <button
