@@ -9,11 +9,15 @@ export const NoteContext = createContext<{
     getNotes: () => Promise<void>;
     createNote: (note: CreateNote) => Promise<void>;
     deleteNote: (id: number) => Promise<void>;
+    selectedNote: Note | null;
+    setSelectedNote: (note: Note | null) => void;
 }>({
     notes: [],
     getNotes: async () => {},
     createNote: async (note: CreateNote) => {},
-    deleteNote: async (id: number) => {}
+    deleteNote: async (id: number) => {},
+    selectedNote: null,
+    setSelectedNote: () => {}
 });
 
 export const useNotes = () => {
@@ -26,6 +30,7 @@ export const useNotes = () => {
 
 export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
     const [notes, setNotes] = useState<Note[]>([]);
+    const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
     const API_URL = 'http://localhost:3000/api/notes';
 
@@ -58,7 +63,14 @@ export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     return (
-        <NoteContext.Provider value={{notes, getNotes, createNote, deleteNote}}>
+        <NoteContext.Provider value={{
+            notes, 
+            getNotes, 
+            createNote, 
+            deleteNote,
+            selectedNote,
+            setSelectedNote
+        }}>
             {children}
         </NoteContext.Provider>
     );

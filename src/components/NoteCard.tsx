@@ -4,7 +4,7 @@ import { useNotes } from "@/context/NoteContext"
 function NoteCard({
     note
 }: {note: Note}) {
-    const { deleteNote } = useNotes();
+    const { deleteNote, setSelectedNote } = useNotes();
     return (
         <div key={note.id} className="bg-neutral-800 p-4 my-2 rounded-md flex justify-between">
             <div>
@@ -13,7 +13,7 @@ function NoteCard({
             </div>
             <div className="flex gap-2 ml-10">
                 <button 
-                    onClick={() => {}}
+                    onClick={() => {setSelectedNote(note)}}
                     className="bg-blue-500 text-white px-4 py-2 rounded-full cursor-pointer hover:bg-blue-600 transition-colors">
                         🖊️
                 </button>
