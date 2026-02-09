@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + Prisma Notes CRUD 🚀
 
-## Getting Started
+A modern, full-stack Notes application built with **Next.js**, **Prisma**, **PostgreSQL**, and **Tailwind CSS**.
 
-First, run the development server:
+---
+
+## 📝 About the Project
+
+This project is a **CRUD (Create, Read, Update, Delete)** application for managing notes. It was developed specifically for **practice purposes** to explore the integration between Next.js App Router, Prisma ORM, and PostgreSQL.
+
+> [!IMPORTANT]
+> This project is intended to be run **locally only**. It serves as a personal laboratory for learning and experimenting with modern web technologies.
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 15+](https://nextjs.org/) (App Router)
+- **Database ORM:** [Prisma](https://www.prisma.io/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** [React Icons](https://react-icons.github.io/react-icons/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+
+## ✨ Key Features
+
+- ✅ **Create Notes:** Add new notes with a title and content.
+- 📋 **View Notes:** See a list of all your saved notes.
+- ✏️ **Edit Notes:** Update the information of existing notes.
+- 🗑️ **Delete Notes:** Remove notes you no longer need.
+- 📱 **Responsive Design:** Optimized for different screen sizes.
+
+---
+
+## 🚀 Getting Started
+
+To get this project running on your local machine, follow these steps:
+
+### 1. Prerequisites
+
+- Make sure you have **Node.js** installed.
+- Have a **PostgreSQL** instance running (locally or via a service like Docker).
+
+### 2. Clone the Repository
+
+```bash
+git clone <your-repository-url>
+cd nextjs-prisma-crud
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Environment Variables
+
+Create a `.env` file in the root directory and add your PostgreSQL connection string:
+
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
+```
+
+### 5. Database Setup
+
+Run Prisma migrations to create the database schema:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+### 6. Run the Application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Project Structure
 
-## Learn More
+- `src/app`: Next.js pages and API routes.
+- `src/components`: Reusable UI components (NoteForm, NoteCard).
+- `src/context`: React Context for state management.
+- `prisma`: Database schema and migrations.
+- `src/generated`: Prisma client output.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎓 Learning Goals
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Implementation of the App Router in Next.js.
+- Handling Server Actions and Client Components.
+- Managing relational data with Prisma.
+- Building a consistent UI with Tailwind CSS.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+_Created for practice and learning._ 👨‍💻
