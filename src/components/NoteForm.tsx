@@ -34,7 +34,7 @@ function NoteForm() {
             ></textarea>
             <button 
                 type="submit"
-                className="px-5 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                className="px-5 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 cursor-pointer"
             >
                 Add Note
             </button>

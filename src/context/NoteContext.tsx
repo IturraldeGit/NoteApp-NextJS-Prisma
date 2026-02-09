@@ -1,20 +1,18 @@
 'use client';
 
 import { createContext, useState, useContext } from "react";
-
-interface Note {
-    title: string;
-    content: string;
-}
+import { Note, CreateNote } from "@/interfaces/Note";
 
 export const NoteContext = createContext<{
     notes: Note[];
     getNotes: () => Promise<void>;
-    createNote: (note: Note) => Promise<void>;
+    createNote: (note: CreateNote) => Promise<void>;
+    deleteNote: (id: string) => Promise<void>;
 }>({
     notes: [],
     getNotes: async () => {},
-    createNote: async (note: Note) => {}
+    createNote: async (note: CreateNote) => {},
+    deleteNote: async (id: string) => {}
 });
 
 export const useNotes = () => {
@@ -26,7 +24,7 @@ export const useNotes = () => {
 }
 
 export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
-    const [notes, setNotes] = useState<any[]>([]);
+    const [notes, setNotes] = useState<Note[]>([]);
 
     const API_URL = 'http://localhost:3000/api/notes';
 
@@ -37,7 +35,7 @@ export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
         setNotes(data);
     }
 
-    async function createNote(note: Note) {
+    async function createNote(note: CreateNote) {
         const res = await fetch(API_URL, {
             method: 'POST',
             headers: {
@@ -49,8 +47,17 @@ export const NoteProvider = ({ children }: { children: React.ReactNode }) => {
         const newNote = await res.json();
         setNotes([...notes, newNote]);
     }
+
+    async function deleteNote(id: string) {
+        const res = await fetch(`${API_URL}/${id}`, {
+            method: 'DELETE',
+        });
+        const data = await res.json();
+        setNotes(notes.filter((note) => note.id !== id));
+    }
+
     return (
-        <NoteContext.Provider value={{notes, getNotes, createNote}}>
+        <NoteContext.Provider value={{notes, getNotes, createNote, deleteNote}}>
             {children}
         </NoteContext.Provider>
     );
